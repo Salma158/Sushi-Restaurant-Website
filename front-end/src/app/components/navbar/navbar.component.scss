@@ -1,0 +1,31 @@
+.spacer {
+    flex: 1;
+}
+
+.logo {
+    margin-right: 8px;
+    width: 30px;
+}
+
+.project-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.nav-links {
+    gap: 40px;
+}
+
+.sidenav {
+    width: 300px;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+  }
+  
