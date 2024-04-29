@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../interfaces/menu-item';
+import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 @Component({
   selector: 'app-menu-list',
   standalone: true,
-  imports: [],
+  imports: [MenuItemComponent],
   templateUrl: './menu-list.component.html',
   styleUrl: './menu-list.component.scss'
 })

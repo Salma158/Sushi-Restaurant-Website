@@ -1,1 +1,3 @@
-<p>menu-list works!</p>
+@for (menuItem of menuList; track $index){
+<app-menu-item [item]="menuItem"></app-menu-item>
+}
