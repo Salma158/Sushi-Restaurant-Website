@@ -1,1 +1,13 @@
-<app-menu-list></app-menu-list>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <h2>Categories</h2>
+        <mat-list role="list">
+            @for (category of categories; track $index){
+            <mat-list-item role="listitem" routerLink="/category">{{category.categoryName}}</mat-list-item>
+            }
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-menu-list></app-menu-list>
+    </mat-drawer-content>
+</mat-drawer-container>

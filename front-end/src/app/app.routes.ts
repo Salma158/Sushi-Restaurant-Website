@@ -7,6 +7,8 @@ import { MenuItemsComponent } from './pages/admin/menu-items/menu-items.componen
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
     {path: 'menu', title: 'menu', component: MenuComponent},
+    {path: 'category' , title: 'category', component: MenuComponent},
+    {path: 'category/:id', title: 'category items', component: MenuComponent},
     {
         path: 'admin',
         component: AdminDashboardComponent,

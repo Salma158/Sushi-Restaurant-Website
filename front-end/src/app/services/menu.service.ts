@@ -7,9 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class MenuService {
 
+  baseUrl = 'http://localhost:8080/api'
+
   constructor(private http : HttpClient) {}
 
   getMenuItems(): Observable<any>{
-    return this.http.get('http://localhost:8080/api/menuItems')
+    return this.http.get(`${this.baseUrl}/menuItems`)
   }
+
+  getMenuItemsByCategory(categoryId : number): Observable<any>{
+    return this.http.get(`${this.baseUrl}/menu-item-category/${categoryId}/menuItems`)
+  }
+
+  getAllCategories(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/menu-item-category`)
+  }
+  
 }
