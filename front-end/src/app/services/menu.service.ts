@@ -22,5 +22,7 @@ export class MenuService {
   getAllCategories(): Observable<any>{
     return this.http.get(`${this.baseUrl}/menu-item-category`)
   }
-  
+  searchMenuItems(keyword: string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/menuItems/search/findByNameContaining?name=${keyword}`)
+  }
 }

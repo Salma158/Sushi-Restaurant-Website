@@ -1,0 +1,10 @@
+<mat-form-field>
+    <input matInput
+           placeholder="Search for menu items ..."
+           #myInput
+           (keyup.enter)="search(myInput.value)">
+
+    <button mat-button matSuffix (click)="search(myInput.value)">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>

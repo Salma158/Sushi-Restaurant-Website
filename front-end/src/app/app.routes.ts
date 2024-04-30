@@ -16,4 +16,5 @@ export const routes: Routes = [
             { path: 'menuitems', title: 'admin-menuItems' , component: MenuItemsComponent }
         ]
     },
+    {path: 'search/:keyword', title: 'search', component: MenuComponent}
 ];

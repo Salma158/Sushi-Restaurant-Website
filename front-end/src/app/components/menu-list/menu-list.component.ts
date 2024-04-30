@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MenuListComponent {
   menuList!: Array<MenuItem>;
+  searchMode?: boolean;
   @Input() id?: any;
 
   constructor(private menuService: MenuService,
@@ -21,6 +22,25 @@ export class MenuListComponent {
   
   // ActivatedRoute worked but withComponentInputBinding not ! 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      const keyword = params['keyword'];
+      if (keyword) {
+        this.handleSearchItems(keyword);
+      } else{
+        this.handleListItems();
+      }
+    });
+  }
+  handleSearchItems(keyword : string){
+    this.menuService.searchMenuItems(keyword).subscribe({
+      next: (res) => this.menuList = res._embedded.menuItems,
+      error: (e) => console.error(e),
+    })
+  }
+
+
+  handleListItems(){
     this.route.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
