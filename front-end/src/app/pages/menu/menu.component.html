@@ -3,7 +3,7 @@
         <h2>Categories</h2>
         <mat-list role="list">
             @for (category of categories; track $index){
-            <mat-list-item role="listitem" routerLink="/category">{{category.categoryName}}</mat-list-item>
+            <mat-list-item role="listitem" routerLink="/category/{{category.id}}">{{category.categoryName}}</mat-list-item>
             }
         </mat-list>
     </mat-drawer>

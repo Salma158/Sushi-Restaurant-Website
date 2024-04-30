@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../interfaces/menu-item';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu-list',
@@ -12,18 +13,23 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
 })
 export class MenuListComponent {
   menuList!: Array<MenuItem>;
-  @Input() id?: number;
+  @Input() id?: any;
 
-  constructor(private menuService: MenuService) { }
-
+  constructor(private menuService: MenuService,
+    private route : ActivatedRoute
+  ) {}
+  
+  // ActivatedRoute worked but withComponentInputBinding not ! 
   ngOnInit() {
-    if(this.id){
-      this.listMenuItemsByCategory();
-    } else{
-      this.listMenuItems();
-    }
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id) {
+        this.listMenuItemsByCategory();
+      } else {
+        this.listMenuItems();
+      }
+    });
   }
-
   listMenuItemsByCategory(){
     this.menuService.getMenuItemsByCategory(this.id!).subscribe({
       next: (res) => this.menuList = res._embedded.menuItems,

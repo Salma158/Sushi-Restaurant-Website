@@ -15,7 +15,7 @@ export class MenuService {
     return this.http.get(`${this.baseUrl}/menuItems`)
   }
 
-  getMenuItemsByCategory(categoryId : number): Observable<any>{
+  getMenuItemsByCategory(categoryId : string): Observable<any>{
     return this.http.get(`${this.baseUrl}/menu-item-category/${categoryId}/menuItems`)
   }
 
