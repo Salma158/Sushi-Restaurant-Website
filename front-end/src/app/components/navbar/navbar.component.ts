@@ -7,11 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CartStatusComponent } from '../cart-status/cart-status.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterOutlet,MatSidenavModule, MatSidenavContainer, MatListModule, MatIconModule, MatToolbarModule, MatMenuModule, FlexLayoutModule],
+  imports: [RouterLink, RouterOutlet,MatSidenavModule,
+     MatSidenavContainer, MatListModule, MatIconModule, 
+     MatToolbarModule, MatMenuModule, FlexLayoutModule,
+    CartStatusComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })

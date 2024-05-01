@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../interfaces/menu-item';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Category } from '../../interfaces/category';
-
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-menu-item-details',
   standalone: true,
-  imports: [MatCardModule,MatButtonModule, FlexLayoutModule],
+  imports: [MatCardModule,MatButtonModule, FlexLayoutModule, CurrencyPipe, RouterLink],
   templateUrl: './menu-item-details.component.html',
   styleUrl: './menu-item-details.component.scss'
 })
 export class MenuItemDetailsComponent {
   menuItemId!: string;
-  menuItem?: MenuItem;
+  menuItem!: MenuItem;
   menuItemCategory? : Category
   constructor(private menuService: MenuService, private route: ActivatedRoute) { }
 
@@ -39,5 +39,9 @@ export class MenuItemDetailsComponent {
       next: (res) => this.menuItemCategory = res,
       error: (e) => console.error(e),
     })
+  }
+
+  addToCart(menuItem : MenuItem){
+    console.log(`add to cart", ${menuItem?.name} , ${menuItem?.price}`)
   }
 }

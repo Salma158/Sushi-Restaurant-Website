@@ -8,10 +8,11 @@
                 <mat-card-title>{{ menuItem?.name }}</mat-card-title>
                 <mat-card-subtitle>Category: {{ menuItemCategory?.categoryName }}</mat-card-subtitle>
                 <!-- <p>Rating: {{ menuItem.rating }}/5</p> -->
-                <p>Price: ${{ menuItem?.price }}</p>
+                <p>Price: {{ menuItem?.price | currency: 'USD'}}</p>
                 <p>{{ menuItem?.description }}</p>
-                <button mat-button color="primary">Add to Order</button>
+                <button mat-button color="primary" (click)="addToCart(menuItem)">Add to Order</button>
             </div>
         </div>
     </mat-card-content>
 </mat-card>
+<a routerLink="/menu">Back to menu</a>
