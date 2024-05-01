@@ -30,17 +30,17 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
-        HttpMethod[] theUnsupportedActions = { HttpMethod.PUT, HttpMethod.POST , HttpMethod.DELETE };
-
-        config.getExposureConfiguration()
-                .forDomainType(MenuItem.class)
-                .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)))
-                .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)));
-
-        config.getExposureConfiguration()
-                .forDomainType(Category.class)
-                .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)))
-                .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)));
+//        HttpMethod[] theUnsupportedActions = { HttpMethod.PUT, HttpMethod.POST , HttpMethod.DELETE };
+//
+//        config.getExposureConfiguration()
+//                .forDomainType(MenuItem.class)
+//                .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)))
+//                .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)));
+//
+//        config.getExposureConfiguration()
+//                .forDomainType(Category.class)
+//                .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)))
+//                .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)));
 
         exposeIds(config);
 
