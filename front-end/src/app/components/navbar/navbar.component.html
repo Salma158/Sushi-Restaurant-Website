@@ -33,7 +33,7 @@
 
     <mat-toolbar class="navbar" color="transparent">
 
-        <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="row" fxLayoutAlign="start center" routerLink="" class="home">
             <img src="./../assets/logo.jpg" alt="Logo" class="logo">
             <span class="project-name">Name</span>
         </div>
@@ -41,16 +41,10 @@
         <span class="spacer"></span>
 
         <div fxLayout="row" fxLayoutAlign="center center" fxShow="true" fxHide.lt-md class="nav-links">
-            <a mat-button routerLink="/home">Home</a>
-            <a mat-button routerLink="/about">About</a>
-            <a mat-button routerLink="/contact">Contact</a>
-            <a mat-button [matMenuTriggerFor]="dropdown">
-                menu
-            </a>
-            <mat-menu #dropdown>
-                <button mat-menu-item>Option 1</button>
-                <button mat-menu-item>Option 2</button>
-            </mat-menu>
+            <a mat-button routerLink="">Home</a>
+            <a mat-button routerLink="about">About</a>
+            <a mat-button routerLink="contact">Contact</a>
+            <a mat-button routerLink="menu">Menu</a>
         </div>
 
         <span class="spacer"></span>
