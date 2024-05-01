@@ -1,1 +1,17 @@
-<p>menu-item-details works!</p>
+<mat-card>
+    <mat-card-content>
+        <div class="product-info-container" fxLayout="row">
+            <div class="product-image">
+                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <mat-card-title>{{ menuItem?.name }}</mat-card-title>
+                <mat-card-subtitle>Category: {{ menuItemCategory?.categoryName }}</mat-card-subtitle>
+                <!-- <p>Rating: {{ menuItem.rating }}/5</p> -->
+                <p>Price: ${{ menuItem?.price }}</p>
+                <p>{{ menuItem?.description }}</p>
+                <button mat-button color="primary">Add to Order</button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

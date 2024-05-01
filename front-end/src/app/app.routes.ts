@@ -10,11 +10,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
     {path: 'about', title: 'about-us', component: AboutComponent},
-    {path: 'menu', title: 'menu', component: MenuComponent,
-        children: [
-            {path: 'item-details', title: 'item-details' , component: MenuItemDetailsComponent}
-        ]
-    },
+    {path: 'menu', title: 'menu', component: MenuComponent},
     {path: 'category/:id', title: 'category-items', component: MenuComponent},
     {path: 'category' , title: 'category', component: MenuComponent},
     {
@@ -25,5 +21,6 @@ export const routes: Routes = [
         ]
     },
     {path: 'search/:keyword', title: 'search', component: MenuComponent},
-    {path: 'contact', title: 'contact-us', component: ContactComponent}
+    {path: 'contact', title: 'contact-us', component: ContactComponent},
+    {path: 'category/item-details/:id', title: 'item-details' , component: MenuItemDetailsComponent}
 ];

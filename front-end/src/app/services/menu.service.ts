@@ -19,10 +19,16 @@ export class MenuService {
     return this.http.get(`${this.baseUrl}/menu-item-category/${categoryId}/menuItems`)
   }
 
-  getAllCategories(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/menu-item-category`)
-  }
   searchMenuItems(keyword: string): Observable<any>{
     return this.http.get(`${this.baseUrl}/menuItems/search/findByNameContaining?name=${keyword}`)
+  }
+
+  getMenuItemById(itemId : string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/menuItems/${itemId}`)
+  }
+
+  getMenuItemCategory(itemId : string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/menuItems/${itemId}/category`)
+
   }
 }

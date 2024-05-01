@@ -20,7 +20,6 @@ export class MenuListComponent {
     private route : ActivatedRoute
   ) {}
   
-  // ActivatedRoute worked but withComponentInputBinding not ! 
   ngOnInit() {
 
     this.route.params.subscribe(params => {
