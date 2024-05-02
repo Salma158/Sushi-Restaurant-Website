@@ -65,6 +65,7 @@ public class AuthenticationService {
         var user = ((User) auth.getPrincipal());
         claims.put("fullName", user.getFullName());
 
+
         var jwtToken = jwtService.generateToken(claims, (User) auth.getPrincipal());
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -74,8 +75,9 @@ public class AuthenticationService {
     @Transactional
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
-                // todo exception has to be defined
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
+
+        System.out.println(savedToken);
         if (LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
             sendValidationEmail(savedToken.getUser());
             throw new RuntimeException("Activation token has expired. A new token has been send to the same email address");
@@ -83,6 +85,7 @@ public class AuthenticationService {
 
         var user = userRepository.findById(savedToken.getUser().getId())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        System.out.println(user);
         user.setEnabled(true);
         userRepository.save(user);
 
@@ -110,7 +113,7 @@ public class AuthenticationService {
         emailService.sendEmail(
                 user.getEmail(),
                 user.getFullName(),
-                EmailTemplateName.ACTIVATE_ACCOUNT,
+                "activate_account",
                 activationUrl,
                 newToken,
                 "Account activation"

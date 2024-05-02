@@ -28,7 +28,7 @@ public class EmailService {
     public void sendEmail(
             String to,
             String username,
-            EmailTemplateName emailTemplate,
+            String emailTemplate,
             String confirmationUrl,
             String activationCode,
             String subject
@@ -37,8 +37,9 @@ public class EmailService {
         if (emailTemplate == null) {
             templateName = "confirm-email";
         } else {
-            templateName = emailTemplate.name();
+            templateName = "activate_account";
         }
+        System.out.println(templateName);
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
