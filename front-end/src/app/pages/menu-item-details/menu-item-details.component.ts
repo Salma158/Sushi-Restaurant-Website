@@ -16,7 +16,7 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class MenuItemDetailsComponent {
   menuItemId!: string;
-  menuItem!: MenuItem;
+  menuItem?: MenuItem;
   menuItemCategory? : Category
   constructor(private menuService: MenuService, private route: ActivatedRoute) { }
 
@@ -41,7 +41,4 @@ export class MenuItemDetailsComponent {
     })
   }
 
-  addToCart(menuItem : MenuItem){
-    console.log(`add to cart", ${menuItem?.name} , ${menuItem?.price}`)
-  }
 }
