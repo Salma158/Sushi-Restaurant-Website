@@ -1,5 +1,6 @@
 package com.luv2code.backend.cart;
 
+import com.luv2code.backend.dao.CartItemRepository;
 import com.luv2code.backend.dao.CartRepository;
 import com.luv2code.backend.dao.MenuItemRepository;
 import com.luv2code.backend.entity.Cart;
@@ -14,6 +15,15 @@ public class CartService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    private final CartItemRepository cartItemRepository;
+
+    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository) {
+        this.cartRepository = cartRepository;
+        this.cartItemRepository = cartItemRepository;
+    }
+
+
 
     @Autowired
     private MenuItemRepository menuItemRepository;
@@ -44,4 +54,32 @@ public class CartService {
         }
         cartRepository.save(cart);
     }
-}
+
+
+        public void removeFromCart(User user, Long itemId, int quantity) {
+            Cart cart = cartRepository.findByUser(user);
+            if (cart == null) {
+                return;
+            }
+
+            CartItem cartItemToRemove = null;
+            for (CartItem cartItem : cart.getCartItems()) {
+                if (cartItem.getMenuItem().getId().equals(itemId)) {
+                    if (cartItem.getQuantity() <= quantity) {
+                        cartItemToRemove = cartItem;
+                        break;
+                    } else {
+                        cartItem.setQuantity(cartItem.getQuantity() - quantity);
+                        cartRepository.save(cart);
+                        return;
+                    }
+                }
+            }
+
+            if (cartItemToRemove != null) {
+                cart.getCartItems().remove(cartItemToRemove);
+                cartRepository.save(cart);
+                cartItemRepository.delete(cartItemToRemove);
+            }
+        }
+    }
