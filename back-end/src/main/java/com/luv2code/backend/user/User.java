@@ -1,4 +1,5 @@
 package com.luv2code.backend.user;
+import com.luv2code.backend.entity.Cart;
 import com.luv2code.backend.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -105,4 +106,5 @@ public class User implements UserDetails, Principal {
     public String getFullName() {
         return firstname + " " + lastname;
     }
+
 }
