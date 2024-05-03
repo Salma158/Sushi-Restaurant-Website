@@ -28,4 +28,11 @@ public class OrderService {
 
     }
 
+    public Order getOrdersOfUser(User user) {
+
+        return orderRepository.findByUserWithOrderItems(user);
+    }
+
+
+
 }
