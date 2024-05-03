@@ -10,6 +10,8 @@ import com.luv2code.backend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CartService {
 
@@ -22,7 +24,6 @@ public class CartService {
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
     }
-
 
 
     @Autowired
@@ -56,30 +57,41 @@ public class CartService {
     }
 
 
-        public void removeFromCart(User user, Long itemId, int quantity) {
-            Cart cart = cartRepository.findByUser(user);
-            if (cart == null) {
-                return;
-            }
+    public void removeFromCart(User user, Long itemId, int quantity) {
+        Cart cart = cartRepository.findByUser(user);
+        if (cart == null) {
+            return;
+        }
 
-            CartItem cartItemToRemove = null;
-            for (CartItem cartItem : cart.getCartItems()) {
-                if (cartItem.getMenuItem().getId().equals(itemId)) {
-                    if (cartItem.getQuantity() <= quantity) {
-                        cartItemToRemove = cartItem;
-                        break;
-                    } else {
-                        cartItem.setQuantity(cartItem.getQuantity() - quantity);
-                        cartRepository.save(cart);
-                        return;
-                    }
+        CartItem cartItemToRemove = null;
+        for (CartItem cartItem : cart.getCartItems()) {
+            if (cartItem.getMenuItem().getId().equals(itemId)) {
+                if (cartItem.getQuantity() <= quantity) {
+                    cartItemToRemove = cartItem;
+                    break;
+                } else {
+                    cartItem.setQuantity(cartItem.getQuantity() - quantity);
+                    cartRepository.save(cart);
+                    return;
                 }
             }
+        }
 
-            if (cartItemToRemove != null) {
-                cart.getCartItems().remove(cartItemToRemove);
-                cartRepository.save(cart);
-                cartItemRepository.delete(cartItemToRemove);
-            }
+        if (cartItemToRemove != null) {
+            cart.getCartItems().remove(cartItemToRemove);
+            cartRepository.save(cart);
+            cartItemRepository.delete(cartItemToRemove);
         }
     }
+
+    public List<CartItem> getCartItemsForUser(User user) {
+        Cart cart = cartRepository.findByUserWithCartItems(user);
+        if (cart != null) {
+            return cart.getCartItems();
+        }
+        return null;
+    }
+
+
+
+}

@@ -1,10 +1,13 @@
 package com.luv2code.backend.cart;
+import com.luv2code.backend.entity.CartItem;
 import com.luv2code.backend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class CartController{
@@ -31,4 +34,16 @@ public class CartController{
         cartService.removeFromCart(user, request.getItemId(), request.getQuantity());
         return ResponseEntity.ok("Item removed from the cart successfully.");
     }
-}
+
+
+
+    @GetMapping("/getItems")
+    public ResponseEntity<List<CartItem>> getCartItemsForCurrentUser(@AuthenticationPrincipal User user) {
+            List<CartItem> cartItems = cartService.getCartItemsForUser(user);
+            if (cartItems != null) {
+                return new ResponseEntity<>(cartItems, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+    }
