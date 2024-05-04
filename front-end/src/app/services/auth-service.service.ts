@@ -13,4 +13,8 @@ export class AuthServiceService {
   confirm(token : any) {
     return this.http.get(`${this.baseUrl}/activate-account?token=${token}`);
   }
+
+  login(email: string, password: string) {
+    return this.http.post(`${this.baseUrl}/authenticate`, { email, password });
+  }
 }
