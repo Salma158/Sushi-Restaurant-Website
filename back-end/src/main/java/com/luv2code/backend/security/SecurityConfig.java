@@ -31,7 +31,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(
                                         "api/auth/**",
-                                        "api/menuItems"
+                                        "api/menuItems",
+                                        "upload",
+                                "add-menu-item"
                                 )
                                     .permitAll()
                                 .anyRequest()

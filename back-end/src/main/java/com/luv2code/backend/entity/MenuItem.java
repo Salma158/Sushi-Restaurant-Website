@@ -39,4 +39,8 @@ public class MenuItem {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public void setCloudinaryUrl(String cloudinaryUrl) {
+        this.imageUrl = cloudinaryUrl;
+    }
 }
