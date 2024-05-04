@@ -7,6 +7,7 @@ import { MenuItemDetailsComponent } from './pages/menu-item-details/menu-item-de
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
@@ -24,5 +25,6 @@ export const routes: Routes = [
     {path: 'search/:keyword', title: 'search', component: MenuComponent},
     {path: 'contact', title: 'contact-us', component: ContactComponent},
     {path: 'category/item-details/:id', title: 'item-details' , component: MenuItemDetailsComponent},
-    {path: 'activate-account', title: 'activate-account', component :ActivateAccountComponent}
+    {path: 'activate-account', title: 'activate-account', component :ActivateAccountComponent},
+    {path: 'login', title: 'login', component: LoginComponent}
 ];

@@ -1,0 +1,26 @@
+
+.container {
+    height: 100vh;
+}
+
+.login-card {
+    height: 60%;
+}
+
+.password-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.forgot-password {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.login-button {
+    margin-top: 20px;
+    width: 100%;
+    background-color: black;
+    color: white !important;
+}
