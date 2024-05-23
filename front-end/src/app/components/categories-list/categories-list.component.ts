@@ -13,13 +13,17 @@ import { CategoryService } from '../../services/category.service';
   styleUrl: './categories-list.component.scss'
 })
 export class CategoriesListComponent {
-  categories! : Array<Category>;
+  categories!: Array<Category>;
 
-  constructor(private categoryService : CategoryService){}
+  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit(){
-  this.categoryService.getAllCategories().subscribe({
-    next: (res) => this.categories = res._embedded.category,
-    error: (e) => console.error(e),
-})}
+  ngOnInit() {
+    this.categoryService.getAllCategories().subscribe({
+      next: (res) => this.categories = res._embedded.category,
+      error: (e) => console.error(e),
+    })
+
+
+  }
+
 }

@@ -1,11 +1,10 @@
 <mat-card class="example-card">
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
+    <img mat-card-image [src]="item.imageUrl" alt="menu item">
+    <mat-card-content class="content">
         <h1>{{item.name}}</h1>
         <p>
             {{item.description}}
         </p>
-        <span>4.3</span>
         <br>
         <span>{{item.price}}</span>
     </mat-card-content>
@@ -13,7 +12,3 @@
         <button mat-button routerLink="/category/item-details/{{item.id}}">Order now</button>
     </mat-card-actions>
 </mat-card>
-
-<!--
-rating
--->
