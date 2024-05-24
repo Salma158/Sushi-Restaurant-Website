@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Category } from '../../interfaces/category';
 import { CurrencyPipe } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-menu-item-details',
   standalone: true,
@@ -16,9 +17,9 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class MenuItemDetailsComponent {
   menuItemId!: string;
-  menuItem?: MenuItem;
+  menuItem!: MenuItem;
   menuItemCategory? : Category
-  constructor(private menuService: MenuService, private route: ActivatedRoute) { }
+  constructor(private menuService: MenuService, private cartService : CartService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -37,6 +38,13 @@ export class MenuItemDetailsComponent {
   getMenuItemCategory(){
     this.menuService.getMenuItemCategory(this.menuItemId).subscribe({
       next: (res) => this.menuItemCategory = res,
+      error: (e) => console.error(e),
+    })
+  }
+
+  addToCart(){
+    this.cartService.addToCart(this.menuItem).subscribe({
+      next: (res) => console.log(res),
       error: (e) => console.error(e),
     })
   }
