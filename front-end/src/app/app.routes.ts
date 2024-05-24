@@ -9,6 +9,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
@@ -28,5 +29,6 @@ export const routes: Routes = [
     {path: 'category/item-details/:id', title: 'item-details' , component: MenuItemDetailsComponent},
     {path: 'activate-account', title: 'activate-account', component :ActivateAccountComponent},
     {path: 'login', title: 'login', component: LoginComponent},
-    {path: 'cart', title: 'cart', component: CartComponent}
+    {path: 'cart', title: 'cart', component: CartComponent},
+    {path: 'register', title: 'register', component: RegisterComponent}
 ];

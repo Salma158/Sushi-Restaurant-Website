@@ -16,6 +16,7 @@
 .forgot-password {
     margin-top: 10px;
     text-align: right;
+    color: #999;
 }
 
 .login-button {
@@ -23,4 +24,13 @@
     width: 100%;
     background-color: black;
     color: white !important;
+}
+.forgot-password a {
+    color: #999;
+    text-decoration: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
 }
