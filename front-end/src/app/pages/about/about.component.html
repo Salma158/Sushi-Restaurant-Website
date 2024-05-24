@@ -1,14 +1,24 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="container">
-    <h1 class="headline">About Us</h1>
-    <img class="head-img" src="./../../../assets/about-header.png" alt="Our Team" class="team-photo">
-    <p class="description">
+<div class="container">
+  <h1 class="headline">About Us</h1>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="80" fxFlex.lt-md="90">
+      <img class="head-img" src="./../../../assets/about-header.png" alt="Our Team">
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="80" fxFlex.lt-md="90">
+      <p class="description">
         We are a team of passionate individuals dedicated to crafting exceptional digital experiences. Our journey began
         in a small garage, fueled by the desire to revolutionize how people interact with technology. Today, we stand
         tall, with a diverse team of designers, developers, and dreamers, united by a common goal: to make the world a
         better place through innovation.
-    </p>
-    <div fxLayout="row"  fxLayoutGap="50px" fxLayoutAlign="center center" class="values">
-        <img class="principle-img" fxFlex="50" src="./../../../assets/principle.jpg" alt="our principles">
+      </p>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="80" fxFlex.lt-md="90">
+      <div fxLayout="row"  fxLayoutGap="50px" fxLayoutAlign="center center" class="values" fxLayout.xs="column">
+        <img class="principle-img" fxFlex="50" fxFlex.xs="100" src="./../../../assets/principle.jpg" alt="our principles" > 
         <div fxFlex="50"> 
             <div class="value">
                 <mat-icon>explore</mat-icon>
@@ -26,5 +36,12 @@
                 <p>Together, we are stronger. Collaboration is at the heart of everything we do. We celebrate diversity and embrace teamwork.</p>
               </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
+
+
+
