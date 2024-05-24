@@ -6,26 +6,22 @@
                 <mat-card-title>Contact us</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <form fxLayout="column" class="login-form">
+                <form fxLayout="column" class="login-form" (submit)="sendEmail($event)">
                     <mat-form-field appearance="fill">
                         <mat-label>Name</mat-label>
-                        <input matInput type="text" placeholder="Enter your Name" name="name">
+                        <input matInput type="text" placeholder="Enter your Name" name="from_name">
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput type="email" placeholder="Enter your email" name="email">
+                        <input matInput type="email" placeholder="Enter your email" name="reply_to">
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Message</mat-label>
                         <textarea matInput placeholder="Enter your message" name="message" style="height: 150px;"></textarea>
                     </mat-form-field>
-                    <button mat-button class="form-button">Submit</button>
+                    <button mat-button class="form-button" value="Send">Submit</button>
                 </form>
             </mat-card-content>
         </div>
     </mat-card>
 </div>
-
-
-<!-- [(ngModel)]="name"
-[(ngModel)]="email"  -->

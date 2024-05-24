@@ -12,8 +12,13 @@ mat-card {
     font-size: 20px;
     line-height: 30px;
 }
-.custom-button {
-    color: white; 
+.read-button {
+    color: white !important;
     background-color: black;
-  }
+}
+
+.browse-button {
+    color: black !important;
+    border: 1px solid black;
+}
   
