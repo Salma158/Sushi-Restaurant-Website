@@ -15,20 +15,27 @@
 .nav-links {
     gap: 40px;
 }
-
+.link{
+    color: white;
+    text-decoration: none;
+}
 .sidenav {
     width: 300px;
 }
 
 .navbar {
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent;
+    background-color: #201c1c;
     color: white;
   }
-  
+
 
   .home{
     cursor: pointer;
