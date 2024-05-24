@@ -1,1 +1,31 @@
-<p>contact works!</p>
+<div fxLayoutAlign="center center" class="container">
+    <mat-card class="form-card" fxLayout="row" fxFlex="50%">
+        <img src="./../../../assets/contact.png" alt="Login" fxFlex="50%" fxHide.lt-md>
+        <div fxLayout="column" fxLayoutAlign="center" fxFlex="50%" fxFlex.lt-md="100%">
+            <mat-card-header>
+                <mat-card-title>Contact us</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form fxLayout="column" class="login-form">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" placeholder="Enter your Name" name="name">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Enter your email" name="email">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput placeholder="Enter your message" name="message" style="height: 150px;"></textarea>
+                    </mat-form-field>
+                    <button mat-button class="form-button">Submit</button>
+                </form>
+            </mat-card-content>
+        </div>
+    </mat-card>
+</div>
+
+
+<!-- [(ngModel)]="name"
+[(ngModel)]="email"  -->
