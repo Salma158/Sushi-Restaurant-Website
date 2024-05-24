@@ -8,6 +8,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
@@ -26,5 +27,6 @@ export const routes: Routes = [
     {path: 'contact', title: 'contact-us', component: ContactComponent},
     {path: 'category/item-details/:id', title: 'item-details' , component: MenuItemDetailsComponent},
     {path: 'activate-account', title: 'activate-account', component :ActivateAccountComponent},
-    {path: 'login', title: 'login', component: LoginComponent}
+    {path: 'login', title: 'login', component: LoginComponent},
+    {path: 'cart', title: 'cart', component: CartComponent}
 ];

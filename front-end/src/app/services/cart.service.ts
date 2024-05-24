@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../interfaces/menu-item';
 
@@ -11,14 +11,28 @@ export class CartService {
 
   baseUrl = 'http://localhost:8080/api'
 
-  constructor(private http : HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  addToCart(menuItem : MenuItem): Observable<any>{
-    return this.http.post(`${this.baseUrl}/add-to-cart`,{ itemId : menuItem.id, quantity : 1})
+
+  addToCart(menuItem: MenuItem): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(`${this.baseUrl}/add-to-cart`,
+      { itemId: menuItem.id, quantity: 1 },
+      { headers });
   }
 
-  getCartItems(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/getItems`)
+  getCartItems(): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/getItems`, {headers})
   }
 
 }

@@ -19,7 +19,7 @@ export class CartComponent {
 
   getCartItems(){
     this.cartService.getCartItems().subscribe({
-      next: (res) => this.cartItems = res._embedded.cartItems,
+      next: (res) => console.log(res),
       error: (e) => console.error(e),
     })
   }
