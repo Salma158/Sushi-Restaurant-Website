@@ -33,7 +33,12 @@ public class SecurityConfig {
                                         "api/auth/**",
                                         "api/menuItems",
                                         "upload",
-                                "add-menu-item"
+                                "add-menu-item",
+                                "api/menu-item-category",
+                                "api/menuItems/**",
+                                "api/**",
+                                        "api/getItems"
+
                                 )
                                     .permitAll()
                                 .anyRequest()

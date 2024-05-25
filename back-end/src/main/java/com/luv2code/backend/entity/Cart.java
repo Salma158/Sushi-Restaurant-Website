@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,17 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems = new ArrayList<>();
@@ -53,6 +66,4 @@ public class Cart {
     public List<CartItem> getCartItems() {
         return cartItems;
     }
-
-
 }

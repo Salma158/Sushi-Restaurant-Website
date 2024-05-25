@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class CartController{
+public class CartController {
 
     @Autowired
     private CartService cartService;
@@ -36,14 +36,13 @@ public class CartController{
     }
 
 
-
-    @GetMapping("/getItems")
-    public ResponseEntity<List<CartItem>> getCartItemsForCurrentUser(@AuthenticationPrincipal User user) {
-            List<CartItem> cartItems = cartService.getCartItemsForUser(user);
-            if (cartItems != null) {
-                return new ResponseEntity<>(cartItems, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+    @GetMapping("api/getItems")
+    public ResponseEntity<CartResponse> getCartItemsForCurrentUser(@AuthenticationPrincipal User user) {
+        CartResponse cartResponse = cartService.getCartItemsForUser(user);
+        if (cartResponse != null) {
+            return new ResponseEntity<>(cartResponse, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+}

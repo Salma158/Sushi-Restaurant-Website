@@ -10,6 +10,7 @@ import com.luv2code.backend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -30,10 +31,15 @@ public class CartService {
     private MenuItemRepository menuItemRepository;
 
     public void addToCart(User user, Long itemId, int quantity) {
+        if(user != null){
+            System.out.println(user.getId());
+        }
         Cart cart = cartRepository.findByUser(user);
         if (cart == null) {
             cart = new Cart();
             cart.setUser(user);
+            cart.setTotalPrice(BigDecimal.ZERO);
+
         }
 
         MenuItem menuItem = menuItemRepository.findById(itemId)
@@ -53,6 +59,8 @@ public class CartService {
             cartItem.setCart(cart);
             cart.getCartItems().add(cartItem);
         }
+        BigDecimal totalPrice = calculateTotalPrice(cart);
+        cart.setTotalPrice(totalPrice);
         cartRepository.save(cart);
     }
 
@@ -84,14 +92,18 @@ public class CartService {
         }
     }
 
-    public List<CartItem> getCartItemsForUser(User user) {
+    public CartResponse getCartItemsForUser(User user) {
         Cart cart = cartRepository.findByUserWithCartItems(user);
         if (cart != null) {
-            return cart.getCartItems();
+            BigDecimal totalPrice = cart.getTotalPrice();
+            return new CartResponse(cart.getCartItems(), totalPrice);
         }
         return null;
     }
-
-
+    private BigDecimal calculateTotalPrice(Cart cart) {
+        return cart.getCartItems().stream()
+                .map(item -> item.getMenuItem().getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
 }

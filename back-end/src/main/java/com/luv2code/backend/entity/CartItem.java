@@ -24,7 +24,6 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     @JsonIgnore
-
     private Cart cart;
 
     @ManyToOne

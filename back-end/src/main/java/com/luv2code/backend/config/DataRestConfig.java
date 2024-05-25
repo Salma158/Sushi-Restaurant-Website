@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +19,12 @@ public class DataRestConfig implements RepositoryRestConfigurer {
     @Autowired
     public DataRestConfig(EntityManager theEntityManger){
         entityManager = theEntityManger;
+    }
+
+    @Override
+    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+        exposeIds(config);
+
     }
     private void exposeIds(RepositoryRestConfiguration config){
         Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();

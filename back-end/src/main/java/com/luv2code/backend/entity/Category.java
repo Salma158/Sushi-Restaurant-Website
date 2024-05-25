@@ -1,4 +1,5 @@
 package com.luv2code.backend.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +20,6 @@ public class Category {
     private String categoryName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @JsonIgnore
     private Set<MenuItem> menuItems;
 }
