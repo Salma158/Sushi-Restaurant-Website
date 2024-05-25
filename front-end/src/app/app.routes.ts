@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
+import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
 
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
@@ -32,5 +33,6 @@ export const routes: Routes = [
     {path: 'login', title: 'login', component: LoginComponent},
     {path: 'cart', title: 'cart', component: CartComponent},
     {path: 'register', title: 'register', component: RegisterComponent},
-    {path: 'shipping-address', title: 'shipping-address', component: ShippingAddressComponent}
+    {path: 'shipping-address', title: 'shipping-address', component: ShippingAddressComponent},
+    {path: 'confirmation-page', title: 'confirmation-page', component: ConfirmationPageComponent}
 ];

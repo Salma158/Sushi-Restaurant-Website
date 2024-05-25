@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .center-container {
+    width: 60%;
+  }
+  
+  .form-card {
+    width: 100%;
+    padding: 60px;
+  }
+  
+  .form-button {
+    margin-top: 20px;
+    background-color: black;
+    color: white !important;
+  }
+  

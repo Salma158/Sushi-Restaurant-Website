@@ -1,5 +1,6 @@
 package com.luv2code.backend.order;
 
+import com.luv2code.backend.dao.CartRepository;
 import com.luv2code.backend.dao.OrderRepository;
 import com.luv2code.backend.dao.ShippingAddressRepository;
 import com.luv2code.backend.user.User;
@@ -10,10 +11,13 @@ import com.luv2code.backend.entity.*;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+
+    private final CartRepository cartRepository;
     private final ShippingAddressRepository shippingAddressRepository;
 
-    public OrderService(OrderRepository orderRepository, ShippingAddressRepository shippingAddressRepository) {
+    public OrderService(OrderRepository orderRepository, CartRepository cartRepository, ShippingAddressRepository shippingAddressRepository) {
         this.orderRepository = orderRepository;
+        this.cartRepository = cartRepository;
         this.shippingAddressRepository = shippingAddressRepository;
     }
 
@@ -33,6 +37,8 @@ public class OrderService {
         }
 
         orderRepository.save(order);
+        cartRepository.delete(cart);
+
     }
 
     public Order getOrdersOfUser(User user) {
