@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../interfaces/menu-item';
 
@@ -35,16 +35,32 @@ export class CartService {
     return this.http.get(`${this.baseUrl}/getItems`, {headers})
   }
 
-  removeFromCart(menuItem: MenuItem): Observable<any> {
+  decreaseFromCart(menuItem: MenuItem): Observable<any> {
     const token = localStorage.getItem('token');
-
+  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.patch(`${this.baseUrl}/removeItem`,
-      { itemId: menuItem.id, quantity: 1 },
-      { headers });
+  
+    const params = new HttpParams()
+      .set('itemId', menuItem.id.toString())
+      .set('quantity', '1');
+  
+    return this.http.delete(`${this.baseUrl}/removeItem`, { headers, params });
   }
+  deleteFromCart(menuItem: MenuItem): Observable<any> {
+    const token = localStorage.getItem('token');
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    const params = new HttpParams()
+      .set('itemId', menuItem.id.toString())
+      .set('quantity', '0');
+  
+    return this.http.delete(`${this.baseUrl}/removeItem`, { headers, params });
+  }
+  
 
 }

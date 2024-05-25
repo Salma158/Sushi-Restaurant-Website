@@ -12,19 +12,12 @@
                                 <img [src]="cartItem.menuItem.imageUrl" class="border rounded"
                                     style="width: 96px; height: 96px;">
                                 <div>
-                                    <a href="#" class="nav-link">{{ cartItem.menuItem.name}}</a>
+                                    <p>{{ cartItem.menuItem.name}}</p>
                                     <p class="text-muted">{{ cartItem.menuItem.description}}</p>
                                 </div>
                             </div>
                         </div>
                         <div fxFlex="25" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
-                            <!-- <mat-form-field appearance="fill">
-                                <mat-label>Quantity</mat-label>
-                                <mat-select>
-                                    <mat-option *ngFor="let quantity of [1, 2, 3, 4]"
-                                        [value]="quantity">{{quantity}}</mat-option>
-                                </mat-select>
-                            </mat-form-field> -->
                             <button (click)="inc(cartItem.menuItem)">inc</button>
                             <p>{{cartItem.quantity}}</p>
                             <button (click)="dec(cartItem.menuItem)">dec</button>
@@ -34,9 +27,8 @@
                             <small class="text-muted text-nowrap"> ${{ cartItem.menuItem.price}} / per item </small>
                         </div>
                         <div fxFlex="25" fxLayout="row" fxLayoutAlign="center" class="mt-2" >
-                            <button mat-raised-button color="warn" class="border">Remove</button>
+                            <button mat-raised-button color="warn" class="border" (click)="remove(cartItem.menuItem)" >Remove</button>
                         </div>
-                    
                     </div>
                 }
                 <div>
@@ -69,11 +61,11 @@
                     <div fxLayout="column" fxLayoutGap="8px">
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>Total price:</p>
-                            <p>$329.00</p>
+                            <p>${{totalPrice}}</p>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>Discount:</p>
-                            <p class="text-success">-$60.00</p>
+                            <p class="text-success">-$0.00</p>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>TAX:</p>
@@ -82,12 +74,12 @@
                         <mat-divider></mat-divider>
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>Total price:</p>
-                            <p class="fw-bold">{{totalPrice}}</p>
+                            <p class="fw-bold">{{totalPrice + 14}}</p>
                         </div>
                     </div>
                     <div class="mt-3">
                         <button mat-raised-button class="w-100 mb-2 place">Place Order</button>
-                        <button mat-button class="w-100">Back to Menu</button>
+                        <button mat-button class="w-100" routerLink="/menu">Back to Menu</button>
                     </div>
                 </mat-card-content>
             </mat-card>

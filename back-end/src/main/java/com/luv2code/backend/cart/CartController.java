@@ -29,10 +29,11 @@ public class CartController {
         }
     }
 
-    @DeleteMapping("/removeItem")
-    public ResponseEntity<String> removeItemFromCart(@AuthenticationPrincipal User user, @RequestBody RemoveCartItemRequest request) {
-        cartService.removeFromCart(user, request.getItemId(), request.getQuantity());
-        return ResponseEntity.ok("Item removed from the cart successfully.");
+
+    @DeleteMapping("/api/removeItem")
+    public ResponseEntity<Void> removeItemFromCart(@AuthenticationPrincipal User user, @RequestParam Long itemId, @RequestParam int quantity) {
+        cartService.removeFromCart(user, itemId, quantity);
+        return ResponseEntity.noContent().build();
     }
 
 

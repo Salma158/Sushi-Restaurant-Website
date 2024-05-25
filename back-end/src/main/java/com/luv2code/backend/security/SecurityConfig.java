@@ -37,7 +37,8 @@ public class SecurityConfig {
                                 "api/menu-item-category",
                                 "api/menuItems/**",
                                 "api/**",
-                                        "api/getItems"
+                                        "api/getItems",
+                                "api/removeItem"
 
                                 )
                                     .permitAll()

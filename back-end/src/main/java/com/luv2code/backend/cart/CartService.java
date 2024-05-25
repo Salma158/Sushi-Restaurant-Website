@@ -7,11 +7,13 @@ import com.luv2code.backend.entity.Cart;
 import com.luv2code.backend.entity.CartItem;
 import com.luv2code.backend.entity.MenuItem;
 import com.luv2code.backend.user.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -64,7 +66,6 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-
     public void removeFromCart(User user, Long itemId, int quantity) {
         Cart cart = cartRepository.findByUser(user);
         if (cart == null) {
@@ -74,23 +75,27 @@ public class CartService {
         CartItem cartItemToRemove = null;
         for (CartItem cartItem : cart.getCartItems()) {
             if (cartItem.getMenuItem().getId().equals(itemId)) {
-                if (cartItem.getQuantity() <= quantity) {
-                    cartItemToRemove = cartItem;
-                    break;
-                } else {
-                    cartItem.setQuantity(cartItem.getQuantity() - quantity);
-                    cartRepository.save(cart);
-                    return;
-                }
+                cartItemToRemove = cartItem;
+                break;
             }
         }
 
         if (cartItemToRemove != null) {
-            cart.getCartItems().remove(cartItemToRemove);
+            if (quantity <= 0) {
+                cart.getCartItems().remove(cartItemToRemove);
+                cartItemRepository.delete(cartItemToRemove);
+            } else {
+                cartItemToRemove.setQuantity(cartItemToRemove.getQuantity() - quantity);
+            }
+
+            for( CartItem cartItem : cart.getCartItems()){
+                System.out.println(cartItem.getMenuItem().getName());
+            }
             cartRepository.save(cart);
-            cartItemRepository.delete(cartItemToRemove);
         }
     }
+
+
 
     public CartResponse getCartItemsForUser(User user) {
         Cart cart = cartRepository.findByUserWithCartItems(user);

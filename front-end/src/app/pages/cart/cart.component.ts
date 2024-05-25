@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { CartService } from '../../services/cart.service';
 import { MenuItem } from '../../interfaces/menu-item';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -16,13 +17,13 @@ import { MenuItem } from '../../interfaces/menu-item';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [MatInputModule, MatButtonModule, FlexLayoutModule, MatCardModule, MatCardModule, MatIconModule, MatDividerModule, MatFormFieldModule, MatSelectModule],
+  imports: [RouterLink,MatInputModule, MatButtonModule, FlexLayoutModule, MatCardModule, MatCardModule, MatIconModule, MatDividerModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   cartItems!: Array<any>;
-  totalPrice!: Number;
+  totalPrice!: any;
 
   constructor(private cartService : CartService){}
 
@@ -48,7 +49,13 @@ export class CartComponent {
   }
 
   dec(menuItem: MenuItem) {
-    this.cartService.removeFromCart(menuItem).subscribe({
+    this.cartService.decreaseFromCart(menuItem).subscribe({
+      next: (res) => console.log(res),
+      error: (e) => console.error(e),
+    })
+  }
+  remove(menuItem: MenuItem) {
+    this.cartService.deleteFromCart(menuItem).subscribe({
       next: (res) => console.log(res),
       error: (e) => console.error(e),
     })
