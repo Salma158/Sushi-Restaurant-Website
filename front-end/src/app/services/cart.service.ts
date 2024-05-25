@@ -35,4 +35,16 @@ export class CartService {
     return this.http.get(`${this.baseUrl}/getItems`, {headers})
   }
 
+  removeFromCart(menuItem: MenuItem): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.patch(`${this.baseUrl}/removeItem`,
+      { itemId: menuItem.id, quantity: 1 },
+      { headers });
+  }
+
 }

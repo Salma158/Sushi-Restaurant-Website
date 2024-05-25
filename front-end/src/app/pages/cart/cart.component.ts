@@ -48,7 +48,7 @@ export class CartComponent {
   }
 
   dec(menuItem: MenuItem) {
-    this.cartService.addToCart(menuItem).subscribe({
+    this.cartService.removeFromCart(menuItem).subscribe({
       next: (res) => console.log(res),
       error: (e) => console.error(e),
     })
