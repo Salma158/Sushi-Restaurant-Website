@@ -1,4 +1,5 @@
 package com.luv2code.backend.cart;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luv2code.backend.entity.CartItem;
 import com.luv2code.backend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CartController {
@@ -21,7 +23,9 @@ public class CartController {
             @RequestBody AddToCartRequest addToCartRequest) {
         try {
             cartService.addToCart(user, addToCartRequest.getItemId(), addToCartRequest.getQuantity());
-            return ResponseEntity.ok("Item(s) added to cart successfully");
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonResponse = objectMapper.writeValueAsString(Map.of("message", "Item(s) added to cart successfully"));
+            return ResponseEntity.ok().body(jsonResponse);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item not found");
         } catch (Exception e) {

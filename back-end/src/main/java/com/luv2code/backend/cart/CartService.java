@@ -81,18 +81,16 @@ public class CartService {
         }
 
         if (cartItemToRemove != null) {
-            if (quantity <= 0) {
+            if (quantity <= 1) {
                 cart.getCartItems().remove(cartItemToRemove);
                 cartItemRepository.delete(cartItemToRemove);
             } else {
                 cartItemToRemove.setQuantity(cartItemToRemove.getQuantity() - quantity);
             }
-
-            for( CartItem cartItem : cart.getCartItems()){
-                System.out.println(cartItem.getMenuItem().getName());
-            }
             cartRepository.save(cart);
         }
+        BigDecimal totalPrice = calculateTotalPrice(cart);
+        cart.setTotalPrice(totalPrice);
     }
 
 
