@@ -18,16 +18,16 @@
                             </div>
                         </div>
                         <div fxFlex="25" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
-                            <button (click)="inc(cartItem.menuItem)">inc</button>
+                            <button (click)="inc(cartItem)">inc</button>
                             <p>{{cartItem.quantity}}</p>
-                            <button (click)="dec(cartItem.menuItem)">dec</button>
+                            <button (click)="dec(cartItem, cartItem.quantity)">dec</button>
                         </div>
                         <div>
                             <span class="h6">${{ cartItem.menuItem.price * cartItem.quantity}} </span> <br>
                             <small class="text-muted text-nowrap"> ${{ cartItem.menuItem.price}} / per item </small>
                         </div>
                         <div fxFlex="25" fxLayout="row" fxLayoutAlign="center" class="mt-2" >
-                            <button mat-raised-button color="warn" class="border" (click)="remove(cartItem.menuItem)" >Remove</button>
+                            <button mat-raised-button color="warn" class="border" (click)="remove(cartItem, 0)" >Remove</button>
                         </div>
                     </div>
                 }
@@ -75,6 +75,9 @@
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>Total price:</p>
                             <p class="fw-bold">{{totalPrice + 14}}</p>
+                        </div>
+                        <div>
+                            <p>Payment: Cash on Delivery</p>
                         </div>
                     </div>
                     <div class="mt-3">

@@ -35,7 +35,7 @@ export class CartService {
     return this.http.get(`${this.baseUrl}/getItems`, {headers})
   }
 
-  decreaseFromCart(menuItem: MenuItem): Observable<any> {
+  removeFromCart(menuItem: MenuItem, quantity: number): Observable<any> {
     const token = localStorage.getItem('token');
   
     const headers = new HttpHeaders({
@@ -44,23 +44,8 @@ export class CartService {
   
     const params = new HttpParams()
       .set('itemId', menuItem.id.toString())
-      .set('quantity', '1');
+      .set('quantity', quantity);
   
     return this.http.delete(`${this.baseUrl}/removeItem`, { headers, params });
   }
-  deleteFromCart(menuItem: MenuItem): Observable<any> {
-    const token = localStorage.getItem('token');
-  
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  
-    const params = new HttpParams()
-      .set('itemId', menuItem.id.toString())
-      .set('quantity', '0');
-  
-    return this.http.delete(`${this.baseUrl}/removeItem`, { headers, params });
-  }
-  
-
 }

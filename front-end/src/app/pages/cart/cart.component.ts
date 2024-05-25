@@ -10,30 +10,30 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CartService } from '../../services/cart.service';
 import { MenuItem } from '../../interfaces/menu-item';
 import { RouterLink } from '@angular/router';
-
-
-
+import { FormsModule } from '@angular/forms';
+import { CartItem } from '../../interfaces/CartItem';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [RouterLink,MatInputModule, MatButtonModule, FlexLayoutModule, MatCardModule, MatCardModule, MatIconModule, MatDividerModule, MatFormFieldModule, MatSelectModule],
+  imports: [FormsModule, RouterLink, MatInputModule, MatButtonModule, FlexLayoutModule, MatCardModule, MatCardModule, MatIconModule, MatDividerModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  cartItems!: Array<any>;
+  cartItems!: Array<CartItem>;
   totalPrice!: any;
 
-  constructor(private cartService : CartService){}
+  constructor(private cartService: CartService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getCartItems();
   }
 
-  getCartItems(){
+  getCartItems() {
     this.cartService.getCartItems().subscribe({
-      next: (res) => {this.cartItems = res.cartItems
+      next: (res) => {
+        this.cartItems = res.cartItems
         this.totalPrice = res.totalPrice
         console.log(res)
       },
@@ -41,23 +41,41 @@ export class CartComponent {
     })
   }
 
-  inc(menuItem: MenuItem) {
-    this.cartService.addToCart(menuItem).subscribe({
-      next: (res) => console.log(res),
+  inc(cartItem: CartItem) {
+    this.cartService.addToCart(cartItem.menuItem).subscribe({
+      next: (res) => {
+        console.log(res);
+        cartItem.quantity++;
+        this.calculateTotalPrice();
+      },
       error: (e) => console.error(e),
+
     })
   }
 
-  dec(menuItem: MenuItem) {
-    this.cartService.decreaseFromCart(menuItem).subscribe({
-      next: (res) => console.log(res),
+  dec(cartItem: CartItem, quantity: number) {
+    this.cartService.removeFromCart(cartItem.menuItem, quantity).subscribe({
+      next: (res) => {
+        console.log(res);
+        if (quantity <= 1) {
+          this.cartItems = this.cartItems.filter(c => c !== cartItem);
+        } else {
+          cartItem.quantity--;
+        }
+        this.calculateTotalPrice();
+      },
       error: (e) => console.error(e),
     })
   }
-  remove(menuItem: MenuItem) {
-    this.cartService.deleteFromCart(menuItem).subscribe({
-      next: (res) => console.log(res),
+  remove(cartItem: CartItem, quantity: number) {
+    this.cartService.removeFromCart(cartItem.menuItem, quantity).subscribe({
+      next: (res) => this.calculateTotalPrice(),
       error: (e) => console.error(e),
     })
+  }
+  calculateTotalPrice() {
+    this.totalPrice = this.cartItems.reduce((total, cartItem) => {
+      return total + cartItem.menuItem.price * cartItem.quantity;
+    }, 0);
   }
 }
