@@ -18,17 +18,20 @@
                             </div>
                         </div>
                         <div fxFlex="25" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
-                            <mat-form-field appearance="fill">
+                            <!-- <mat-form-field appearance="fill">
                                 <mat-label>Quantity</mat-label>
                                 <mat-select>
                                     <mat-option *ngFor="let quantity of [1, 2, 3, 4]"
                                         [value]="quantity">{{quantity}}</mat-option>
                                 </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
+                            <button (click)="inc(cartItem.menuItem)">inc</button>
+                            <p>{{cartItem.quantity}}</p>
+                            <button (click)="dec(cartItem.menuItem)">dec</button>
                         </div>
                         <div>
-                            <span class="h6">$1156.00</span> <br>
-                            <small class="text-muted text-nowrap"> $460.00 / per item </small>
+                            <span class="h6">${{ cartItem.menuItem.price * cartItem.quantity}} </span> <br>
+                            <small class="text-muted text-nowrap"> ${{ cartItem.menuItem.price}} / per item </small>
                         </div>
                         <div fxFlex="25" fxLayout="row" fxLayoutAlign="center" class="mt-2" >
                             <button mat-raised-button color="warn" class="border">Remove</button>
@@ -79,12 +82,12 @@
                         <mat-divider></mat-divider>
                         <div fxLayout="row" fxLayoutAlign="space-between">
                             <p>Total price:</p>
-                            <p class="fw-bold">$283.00</p>
+                            <p class="fw-bold">{{totalPrice}}</p>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <button mat-raised-button color="primary" class="w-100 mb-2">Make Purchase</button>
-                        <button mat-button class="w-100">Back to shop</button>
+                        <button mat-raised-button class="w-100 mb-2 place">Place Order</button>
+                        <button mat-button class="w-100">Back to Menu</button>
                     </div>
                 </mat-card-content>
             </mat-card>

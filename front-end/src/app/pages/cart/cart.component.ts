@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { CartService } from '../../services/cart.service';
+import { MenuItem } from '../../interfaces/menu-item';
 
 
 
@@ -21,6 +22,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponent {
   cartItems!: Array<any>;
+  totalPrice!: Number;
 
   constructor(private cartService : CartService){}
 
@@ -30,7 +32,24 @@ export class CartComponent {
 
   getCartItems(){
     this.cartService.getCartItems().subscribe({
-      next: (res) => this.cartItems = res,
+      next: (res) => {this.cartItems = res.cartItems
+        this.totalPrice = res.totalPrice
+        console.log(res)
+      },
+      error: (e) => console.error(e),
+    })
+  }
+
+  inc(menuItem: MenuItem) {
+    this.cartService.addToCart(menuItem).subscribe({
+      next: (res) => console.log(res),
+      error: (e) => console.error(e),
+    })
+  }
+
+  dec(menuItem: MenuItem) {
+    this.cartService.addToCart(menuItem).subscribe({
+      next: (res) => console.log(res),
       error: (e) => console.error(e),
     })
   }
