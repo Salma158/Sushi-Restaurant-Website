@@ -18,6 +18,7 @@ public class OrderService {
     }
 
     public void placeOrder(User user, Cart cart, ShippingAddress shippingAddress) {
+
         ShippingAddress savedShippingAddress = shippingAddressRepository.save(shippingAddress);
 
         Order order = new Order();
