@@ -69,7 +69,10 @@ export class CartComponent {
   }
   remove(cartItem: CartItem, quantity: number) {
     this.cartService.removeFromCart(cartItem.menuItem, quantity).subscribe({
-      next: (res) => this.calculateTotalPrice(),
+      next: (res) => {
+        this.cartItems = this.cartItems.filter(c => c !== cartItem);
+        this.calculateTotalPrice();
+      },
       error: (e) => console.error(e),
     })
   }

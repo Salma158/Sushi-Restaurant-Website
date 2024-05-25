@@ -10,6 +10,7 @@ import { ActivateAccountComponent } from './pages/activate-account/activate-acco
 import { LoginComponent } from './pages/login/login.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
 
 export const routes: Routes = [
     {path: '', title: 'home', component: HomeWrapperComponent},
@@ -30,5 +31,6 @@ export const routes: Routes = [
     {path: 'activate-account', title: 'activate-account', component :ActivateAccountComponent},
     {path: 'login', title: 'login', component: LoginComponent},
     {path: 'cart', title: 'cart', component: CartComponent},
-    {path: 'register', title: 'register', component: RegisterComponent}
+    {path: 'register', title: 'register', component: RegisterComponent},
+    {path: 'shipping-address', title: 'shipping-address', component: ShippingAddressComponent}
 ];

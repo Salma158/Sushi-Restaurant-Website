@@ -5,7 +5,7 @@
                 <mat-card-content class="m-4">
                     <h4 class="mat-title mb-4">Your shopping cart</h4>
                     @for (cartItem of cartItems; track $index)
-    {
+                    {
                     <div fxLayout="row" fxLayoutGap="16px" class="mb-4">
                         <div fxFlex="50">
                             <div fxLayout="row" fxLayoutGap="16px">
@@ -17,21 +17,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div fxFlex="25" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
-                            <button (click)="inc(cartItem)">inc</button>
-                            <p>{{cartItem.quantity}}</p>
-                            <button (click)="dec(cartItem, cartItem.quantity)">dec</button>
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="25">
+                            <button mat-button (click)="dec(cartItem, cartItem.quantity)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <span>{{ cartItem.quantity }}</span>
+                            <button mat-button (click)="inc(cartItem)">
+                                <mat-icon>add</mat-icon>
+                            </button>
                         </div>
-                        <div>
+
+                        <div fxFlex="10" fxLayoutAlign="center center" fxLayout="column">
                             <span class="h6">${{ cartItem.menuItem.price * cartItem.quantity}} </span> <br>
                             <small class="text-muted text-nowrap"> ${{ cartItem.menuItem.price}} / per item </small>
                         </div>
-                        <div fxFlex="25" fxLayout="row" fxLayoutAlign="center" class="mt-2" >
-                            <button mat-raised-button color="warn" class="border" (click)="remove(cartItem, 0)" >Remove</button>
+                        <div fxFlex="25" fxLayout="row" fxLayoutAlign="center center" class="mt-2">
+                            <button mat-raised-button color="warn" class="border"
+                                (click)="remove(cartItem, 0)">Remove</button>
                         </div>
                     </div>
-                }
-                <div>
+                    }
+                    <div>
                         <p><mat-icon class="text-muted">local_shipping</mat-icon> Free Delivery within 1-2 weeks</p>
                         <p class="text-muted">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -81,7 +87,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <button mat-raised-button class="w-100 mb-2 place">Place Order</button>
+                        <button mat-raised-button class="w-100 mb-2 place" routerLink="/shipping-address">Place Order</button>
                         <button mat-button class="w-100" routerLink="/menu">Back to Menu</button>
                     </div>
                 </mat-card-content>
