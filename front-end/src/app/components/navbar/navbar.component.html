@@ -18,9 +18,12 @@
                 <span>Contact</span>
             </a>
 
-            <a mat-list-item routerLink="/contact">
-                <span>favorites</span>
+
+            @if(token){
+            <a mat-list-item routerLink="/cart">
+                <span>Contact</span>
             </a>
+            }
 
             <a mat-list-item routerLink="/login">
                 <span>Login</span>
@@ -29,7 +32,7 @@
 
     </mat-sidenav>
 
-    
+
 
     <mat-toolbar class="navbar" color="transparent">
 
@@ -49,7 +52,8 @@
 
         <span class="spacer"></span>
 
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" fxShow="true" fxHide.gt-sm (click)="sidenav.open()">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" fxShow="true"
+            fxHide.gt-sm (click)="sidenav.open()">
             <mat-icon>menu</mat-icon>
         </button>
 
@@ -57,9 +61,16 @@
             <button mat-icon-button>
                 <mat-icon>search</mat-icon>
             </button>
+            @if(token){
             <button mat-icon-button routerLink="/cart">
                 <mat-icon>shopping_cart</mat-icon>
             </button>
+            }@else{
+            <button mat-icon-button routerLink="/login">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+            }
+
             <button mat-icon-button routerLink="login">
                 <mat-icon>account_circle</mat-icon>
             </button>

@@ -20,5 +20,5 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
+  token = localStorage.getItem('token')
 }
