@@ -1,4 +1,4 @@
-package com.luv2code.backend;
+package com.luv2code.backend.constants;
 
 import lombok.Getter;
 

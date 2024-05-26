@@ -1,14 +1,8 @@
-FROM openjdk:11
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-WORKDIR /app
-
-COPY src/main/resources/application.properties /app/application.properties
-
-
-authenticationcontroller , authenticationrequest authenticationresponse , authenticationservice, registerationrequest,
-addtocartrequest, cartcontroller, cartresponse, cartservice, removecartitemrequest, cloudinaryservice, cloudinaryserviceimpl,
-menuitemcontroller, menuitemmodel, menuitemservice, menuitemserviceimpl, baseentity,  applicationauditaware, beansconfig,
-cloudinaryconfiguration, datarestconfig , cartitemrepository, cartrepository, categoryrepository, imagerepository,
-menuitemrepository, orderitemrepository, orderrepository, shippingaddressrepositoy, emailservice, emailtemplatename, cart,cartitem, category,
-image,menuitem, order, orderitem, shippingaddress, activationtokenexception, operationnotpermittedexception, ordercontroller,
-orderservice, role, rolerepository, jwtfilter, jwtservice, securityconfig, userdetailsserviceimpl, token, tokenrepository, user, userrepository
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/back-end-0.0.1-SNAPSHOT.jar demo.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","demo.jar"]
