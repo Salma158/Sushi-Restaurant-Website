@@ -1,5 +1,5 @@
 package com.luv2code.backend.security;
-import com.luv2code.backend.user.UserRepository;
+import com.luv2code.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

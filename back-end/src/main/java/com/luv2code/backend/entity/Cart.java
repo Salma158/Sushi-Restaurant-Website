@@ -1,6 +1,4 @@
 package com.luv2code.backend.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.luv2code.backend.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
