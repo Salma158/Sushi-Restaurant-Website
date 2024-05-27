@@ -61,7 +61,8 @@ export class MenuListComponent {
 
   listMenuItems(){
     this.menuService.getMenuItems().subscribe({
-      next: (res) => this.menuList = res._embedded.menuItems,
+      next: (res) => {this.menuList = res._embedded.menuItems
+      console.log(res)},
       error: (e) => console.error(e),
     })
   }

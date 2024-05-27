@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
 
-  baseUrl = 'http://localhost:8080/api'
+  baseUrl = 'https://sushi-restaurant-website-8.onrender.com/api'
 
   constructor(private http: HttpClient) { }
 
