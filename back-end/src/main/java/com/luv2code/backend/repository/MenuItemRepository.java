@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.data.domain.Pageable; // Correct import statement
 
-@CrossOrigin("http://localhost:4200")
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
     Page<MenuItem> findByNameContaining(@Param("name") String name, Pageable page);
 }
