@@ -1,0 +1,20 @@
+<div class="contianer">
+    <mat-card>
+        <mat-card-content>
+            <div class="product-info-container" fxLayout="row">
+                <div class="product-image">
+                    <img mat-card-image [src]="menuItem.imageUrl" alt="menu item">
+                </div>
+                <div class="product-details">
+                    <mat-card-title>{{ menuItem.name }}</mat-card-title>
+                    <mat-card-subtitle>Category: {{ menuItemCategory?.categoryName }}</mat-card-subtitle>
+                    <!-- <p>Rating: {{ menuItem.rating }}/5</p> -->
+                    <p>Price: {{ menuItem.price | currency: 'USD'}}</p>
+                    <p>{{ menuItem.description }}</p>
+                    <button mat-button color="primary" (click)="addToCart()">Add to Order</button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+

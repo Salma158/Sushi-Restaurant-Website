@@ -1,0 +1,46 @@
+.spacer {
+    flex: 1;
+}
+
+.logo {
+    margin-right: 8px;
+    width: 30px;
+}
+
+.project-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.nav-links {
+    gap: 40px;
+}
+.link{
+    color: white;
+    text-decoration: none;
+}
+.sidenav {
+    width: 300px;
+}
+
+.navbar {
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #201c1c;
+    color: white;
+  }
+
+
+  .home{
+    cursor: pointer;
+  }
+
+  button{
+    cursor: pointer;
+  }

@@ -1,0 +1,9 @@
+<div class="categories-list">
+    <h2>Categories</h2>
+    <mat-list role="list">
+        <mat-list-item role="listitem" routerLink="/category">All</mat-list-item>
+        @for (category of categories; track $index){
+        <mat-list-item role="listitem" routerLink="/category/{{category.id}}">{{category.categoryName}}</mat-list-item>
+        }
+    </mat-list>
+</div>

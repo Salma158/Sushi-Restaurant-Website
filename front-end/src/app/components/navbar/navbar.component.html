@@ -1,0 +1,84 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav class="sidenav">
+
+        <mat-nav-list (click)="sidenav.close()">
+            <a mat-list-item routerLink="/">
+                <span>Home</span>
+            </a>
+
+            <a mat-list-item routerLink="/about">
+                <span>About</span>
+            </a>
+
+            <a mat-list-item routerLink="/menu">
+                <span>Menu</span>
+            </a>
+
+            <a mat-list-item routerLink="/contact">
+                <span>Contact</span>
+            </a>
+
+
+            @if(token){
+            <a mat-list-item routerLink="/cart">
+                <span>Contact</span>
+            </a>
+            }
+
+            <a mat-list-item routerLink="/login">
+                <span>Login</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+
+
+    <mat-toolbar class="navbar" color="transparent">
+
+        <div fxLayout="row" fxLayoutAlign="start center" routerLink="" class="home">
+            <img src="./../assets/logo.jpg" alt="Logo" class="logo">
+            <span class="project-name">Sashimi</span>
+        </div>
+
+        <span class="spacer"></span>
+
+        <div fxLayout="row" fxLayoutAlign="center center" fxShow="true" fxHide.lt-md class="nav-links">
+            <a mat-button routerLink="" class="link">Home</a>
+            <a mat-button routerLink="about" class="link">About</a>
+            <a mat-button routerLink="contact" class="link">Contact</a>
+            <a mat-button routerLink="menu" class="link">Menu</a>
+        </div>
+
+        <span class="spacer"></span>
+
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" fxShow="true"
+            fxHide.gt-sm (click)="sidenav.open()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <div fxLayout="row" fxLayoutAlign="end center" fxShow="true" fxHide.lt-md>
+            <button mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+            @if(token){
+            <button mat-icon-button routerLink="/cart">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+            }@else{
+            <button mat-icon-button routerLink="/login">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+            }
+
+            <button mat-icon-button routerLink="login">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </div>
+
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+    <app-footer></app-footer>
+</mat-sidenav-container>

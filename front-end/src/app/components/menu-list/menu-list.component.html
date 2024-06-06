@@ -1,0 +1,7 @@
+
+<div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    @for (menuItem of menuList; track $index)
+    {
+        <app-menu-item [item]="menuItem"></app-menu-item>
+    }
+</div>
